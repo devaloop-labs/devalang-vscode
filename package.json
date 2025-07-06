@@ -1,0 +1,82 @@
+{
+  "name": "devalang-vscode",
+  "displayName": "Devalang VSCode Extension",
+  "description": "An extension for Visual Studio Code that provides syntax highlighting, formatting, and language support for Devalang files.",
+  "version": "0.0.1",
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devaloop-labs/devalang-vscode"
+  },
+  "publisher": "Devaloop",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:deva"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "deva",
+        "extensions": [
+          ".deva"
+        ],
+        "aliases": [
+          "Devalang"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "deva",
+        "scopeName": "source.deva",
+        "path": "./syntaxes/deva.tmLanguage.json"
+      }
+    ],
+    "formatters": [
+      {
+        "language": "deva",
+        "command": "extension.formatDeva"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production && npm run copy-wasm",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "copy-wasm": "node dist/scripts/copyWasm.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@devaloop/prettier-plugin-devalang": "^0.0.1",
+    "prettier": "^3.6.2"
+  }
+}
