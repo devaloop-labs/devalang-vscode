@@ -23,7 +23,7 @@ export class Checker {
         const lines = text.split("\n");
 
         try {
-            const parseResult = await this.plugin.parsers.deva.parse(document.uri.fsPath, text); // ← appelle WASM ou Rust parser
+            const parseResult = await this.plugin.parsers.deva.parse(document.uri.fsPath, text); // ← Calling the parser
 
             // NOTE: No need to parse the parse result again
 

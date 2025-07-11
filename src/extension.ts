@@ -30,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			const formattedText = await formatter.format(document.getText(), document.uri.fsPath);
 
-			output.appendLine("📝 Formatage du document (ALT+SHIFT+F)...");
+			output.appendLine("📝 Formatting document (ALT+SHIFT+F)...");
 
 			return [
 				vscode.TextEdit.replace(

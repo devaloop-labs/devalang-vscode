@@ -2,7 +2,7 @@
   "name": "devalang-vscode",
   "displayName": "Devalang VSCode Extension",
   "description": "An extension for Visual Studio Code that provides syntax highlighting, formatting, and language support for Devalang files.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "media/icon.png",
   "repository": {
     "type": "git",
@@ -13,6 +13,7 @@
     "vscode": "^1.80.0"
   },
   "categories": [
+    "Programming Languages",
     "Other"
   ],
   "activationEvents": [
