@@ -2,7 +2,7 @@
     <img src="https://firebasestorage.googleapis.com/v0/b/devaloop-labs.firebasestorage.app/o/devalang-teal-logo.png?alt=media&token=55a9b324-01ce-4386-b16d-62d8866b15a8" alt="Devalang Logo">
 </div>
 
-# 🧩 Devalang - VSCode Extension
+# 🧩 [Devalang](https://github.com/devaloop-labs/devalang) - VSCode Extension
 
 ![TypeScript](https://img.shields.io/badge/Built%20with-TypeScript-blue?logo=typescript)
 
@@ -11,11 +11,11 @@
 
 ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/devaloop.devalang-vscode)
 
-## 🎼 Devalang Extension, by **Devaloop Labs**
+## 🎼 [Devalang](https://github.com/devaloop-labs/devalang) Extension, by **Devaloop Labs**
 
 🎶 Compose music with code — simple, structured, sonic.
 
-Devalang is a tiny domain-specific language (DSL) for music makers, sound designers, and audio hackers.
+[Devalang](https://github.com/devaloop-labs/devalang) is a tiny domain-specific language (DSL) for music makers, sound designers, and audio hackers.
 Compose loops, control samples, render and play audio — all in clean, readable text.
 
 🦊 Whether you're building a track, shaping textures, or performing live, Devalang helps you think in rhythms. It’s designed to be simple, expressive, and fast — because your ideas shouldn’t wait.

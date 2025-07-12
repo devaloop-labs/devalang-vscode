@@ -6,6 +6,12 @@
 
 Here is the changelog for the Devalang VSCode extension :
 
+### Version 0.0.3 - 2025-07-12
+
+- Formatting support for `group`, `call`, and `spawn` statements
+- Syntax highlighting for `group`, `call`, and `spawn` statements
+- Patched blank line at EOF issue
+
 ### Version 0.0.2 - 2025-07-11
 
 - Added `group` syntax highlighting
