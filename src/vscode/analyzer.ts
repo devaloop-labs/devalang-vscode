@@ -51,7 +51,7 @@ export class Analyzer {
 
         const documentChangeEvent = vscode.workspace.onDidChangeTextDocument(async (event) => {
             if (event.document.languageId === 'deva') {
-                this.output.appendLine(`📄 Document modifié : ${event.document.uri.fsPath}`);
+                this.output.appendLine(`📄 Document edited : ${event.document.uri.fsPath}`);
 
                 let diagnosticsResult = await this.analyzeDocument(event.document);
 

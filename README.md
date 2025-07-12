@@ -2,8 +2,6 @@
     <img src="https://firebasestorage.googleapis.com/v0/b/devaloop-labs.firebasestorage.app/o/devalang-teal-logo.png?alt=media&token=55a9b324-01ce-4386-b16d-62d8866b15a8" alt="Devalang Logo">
 </div>
 
-# 🧩 [Devalang](https://github.com/devaloop-labs/devalang) - VSCode Extension
-
 ![TypeScript](https://img.shields.io/badge/Built%20with-TypeScript-blue?logo=typescript)
 
 ![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/devaloop.devalang-vscode)
@@ -11,7 +9,7 @@
 
 ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/devaloop.devalang-vscode)
 
-## 🎼 [Devalang](https://github.com/devaloop-labs/devalang) Extension, by **Devaloop Labs**
+# 🎼 [Devalang](https://github.com/devaloop-labs/devalang) (VSCode Extension)
 
 🎶 Compose music with code — simple, structured, sonic.
 
@@ -33,14 +31,20 @@ From studio sketches to live sets, Devalang gives you rhythmic control — with 
 
 ## 🛠️ Overview
 
-This is the Visual Studio Code extension for Devalang, a domain-specific language designed for music composition and sound design.
+🎶 **Devalang** is a domain-specific language tailored for music composition and sound design.  
+This Visual Studio Code extension brings it to life directly in your editor — for a smooth, expressive, and efficient creative workflow.
 
-Please install the [Devalang CLI](https://github.com/devaloop-labs/devalang) to use all features of this extension.
+> 🚀 For full functionality, make sure to install the [Devalang CLI](https://github.com/devaloop-labs/devalang) alongside this extension.
 
-This extension provides language support for Devalang in Visual Studio Code, including :
+### ✨ What you get:
 
-- Syntax highlighting
-- Code formatting
+- 🌈 **Syntax Highlighting** – Read your code at a glance with beautiful, theme-friendly colors.
+- 🛑 **Real-time Error Checking** – Get instant feedback on mistakes or invalid syntax before you even hit play.
+- 🧹 **Code Formatting** – Keep your `.deva` files clean, structured, and consistent with built-in Prettier support.
+
+---
+
+🎧 Whether you're building rhythmic patterns or sculpting complex audio structures, this extension helps keep your code as polished as your sound.
 
 ## 📆 Installation
 

@@ -51,6 +51,21 @@
       "end": "\""
     },
     {
+      "match": "\\b(if|else if|else)\\b",
+      "name": "keyword.control.devalang"
+    },
+    {
+      "begin": "\\b(if|else if)\\b\\s+",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.devalang" }
+      },
+      "end": ":",
+      "name": "meta.condition.devalang",
+      "patterns": [
+        { "match": "[a-zA-Z0-9_><=!\\s]+" } 
+      ]
+    },
+    {
       "name": "meta.object.devalang",
       "begin": "\\{",
       "end": "\\}",
