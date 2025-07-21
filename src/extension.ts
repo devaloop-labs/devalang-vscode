@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { loadVSCodePlugin } from './vscode/pluginLoader';
 import { Analyzer } from './vscode/analyzer';
 import { Formatter } from './vscode/formatter';
+import { createDevalangLinkProvider } from './vscode/providers/linkProvider';
 
 export function activate(context: vscode.ExtensionContext) {
 	const output = vscode.window.createOutputChannel("Devalang");
@@ -45,6 +46,13 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(formattingEvent);
+
+	context.subscriptions.push(
+		vscode.languages.registerDocumentLinkProvider(
+			{ language: "deva" },
+			createDevalangLinkProvider()
+		)
+	);
 }
 
 export function deactivate() { }

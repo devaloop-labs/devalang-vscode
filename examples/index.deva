@@ -1,10 +1,10 @@
 # This file demonstrates the use of main features in Devalang.
 
-@import { duration, default_bank, params, loopCount, tempo } from "./examples/variables.deva"
-@import { myGroup } from "./examples/group.deva"
+@import { duration, default_bank, params, loopCount, tempo } from "./variables.deva"
+@import { myGroup } from "./group.deva"
 
-@load "./examples/samples/kick-808.wav" as kickCustom
-@load "./examples/samples/hat-808.wav" as hatCustom
+@load "./samples/kick-808.wav" as kickCustom
+@load "./samples/hat-808.wav" as hatCustom
 
 bpm tempo
 
@@ -15,3 +15,16 @@ call myGroup
 
 # Will be executed in parallel (concurrently)
 # spawn myGroup
+
+group myLead:
+    let mySynth = synth sine
+    
+    mySynth -> note(C4, { duration: 400 })
+    mySynth -> note(G4, { duration: 400 })
+    mySynth -> note(E4, { duration: 600 })
+    mySynth -> note(A4, { duration: 400 })
+    mySynth -> note(F4, { duration: 800 })
+    mySynth -> note(D4, { duration: 400 })
+    mySynth -> note(B3, { duration: 600 })
+
+call myLead
