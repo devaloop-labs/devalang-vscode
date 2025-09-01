@@ -6,7 +6,7 @@
 @load "./samples/hat-808.wav" as hatCustom
 
 group myGroup:
-	.kickCustom duration params
-	.hatCustom duration params
+    .kickCustom duration params
+    .hatCustom duration params
 
 @export { myGroup }

@@ -21,63 +21,56 @@ export class Checker {
 
     public async checkSyntax(document: vscode.TextDocument): Promise<vscode.DiagnosticCollection | undefined> {
         const text = document.getText();
-        const lines = text.split("\n");
+        const lines = text.split('\n');
 
         try {
-            // NOTE: No need to parse the parse result again
-            const parseResult = await this.plugin.parsers.deva.parse(document.uri.fsPath, text); // ← Calling the parser
+            // parse(filePath, source)
+            const parseResult = await this.plugin.parsers.deva.parse(document.uri.fsPath, text);
 
             const diags: vscode.Diagnostic[] = [];
+
+            if (!parseResult || parseResult.ok === false) {
+                const err = parseResult?.error ?? parseResult ?? { message: 'Unknown parse failure' };
+                this.output.appendLine(`⚠️ Parser failure: ${JSON.stringify(err)}`);
+                this.diagnostics.set(document.uri, []);
+                return this.diagnostics;
+            }
 
             const pathChecker = new PathChecker();
             const pathErrors = await pathChecker.checkPaths(parseResult, document.uri.fsPath, this.plugin);
 
-            if (pathErrors.length > 0) {
+            if (pathErrors && pathErrors.length > 0) {
                 this.output.appendLine(`❌ Path errors detected: ${JSON.stringify(pathErrors)}`);
                 this.appendErrorsToDiagnostics(diags, pathErrors, lines);
             }
 
-            this.appendErrorsToDiagnostics(
-                diags,
-                parseResult.diagnostics,
-                lines,
-            );
+            if (parseResult && parseResult.diagnostics) {
+                this.appendErrorsToDiagnostics(diags, parseResult.diagnostics, lines);
+            }
 
-            // Update diagnostics collection
             this.diagnostics.set(document.uri, diags);
-
             return this.diagnostics;
-        } catch (error: any) {
-            this.output.appendLine(`❌ Parsing error: ${JSON.stringify(error)}`);
-
-            vscode.window.showErrorMessage("Parsing error in DevaLang file.");
-
+        } catch (e: any) {
+            this.output.appendLine(`❌ Parsing exception: ${JSON.stringify(e)}`);
+            this.diagnostics.set(document.uri, []);
             return;
         }
     }
 
-    private appendErrorsToDiagnostics(
-        diags: vscode.Diagnostic[],
-        parseDiagnostics: any,
-        lines: string[]
-    ): void {
-        if (parseDiagnostics.errors && parseDiagnostics.errors.length) {
-            this.output.appendLine(`❌ Errors detected: ${JSON.stringify(parseDiagnostics.errors)}`);
+    private appendErrorsToDiagnostics(diags: vscode.Diagnostic[], parseDiagnostics: any, lines: string[]): void {
+    if (!parseDiagnostics) { return; }
 
-            for (const err of parseDiagnostics.errors) {
-                const line = err.line ?? 0;
-                const msg = err.message ?? "Unknown error";
+    const errors = parseDiagnostics.errors ?? [];
+    if (!errors.length) { return; }
 
-                const range = new vscode.Range(
-                    new vscode.Position(line, 0),
-                    new vscode.Position(line, lines[line]?.length ?? 1)
-                );
+        this.output.appendLine(`❌ Errors detected: ${JSON.stringify(errors)}`);
 
-                diags.push(
-                    new vscode.Diagnostic(range, msg, vscode.DiagnosticSeverity.Error)
-                );
-            }
+        for (const err of errors) {
+            const line = err.line ?? 0;
+            const msg = err.message ?? 'Unknown error';
+
+            const range = new vscode.Range(new vscode.Position(line, 0), new vscode.Position(line, lines[line]?.length ?? 1));
+            diags.push(new vscode.Diagnostic(range, msg, vscode.DiagnosticSeverity.Error));
         }
     }
-
 }

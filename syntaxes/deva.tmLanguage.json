@@ -8,11 +8,11 @@
     },
     {
       "name": "keyword.control.devalang",
-      "match": "@(import|export|load)"
+      "match": "@(use|import|export|load)"
     },
     {
       "name": "keyword.declaration.devalang",
-      "match": "\\blet\\b"
+      "match": "\\b(let|fn)\\b"
     },
     {
       "match": "\\bas\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
@@ -27,7 +27,7 @@
     },
     {
       "name": "keyword.control.devalang",
-      "match": "\\b(bpm|bank|loop|group|call|spawn|synth)\\b"
+      "match": "\\b(bpm|bank|pattern|loop|group|call|spawn|sleep|synth|automate|print|on|emit)\\b"
     },
     {
       "name": "entity.name.function.devalang",

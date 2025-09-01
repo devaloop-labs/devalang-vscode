@@ -1,30 +1,63 @@
-# This file demonstrates the use of main features in Devalang.
+# This file demonstrates general use cases of Devalang.
 
-@import { duration, default_bank, params, loopCount, tempo } from "./variables.deva"
-@import { myGroup } from "./group.deva"
+# BPM definition
+bpm 125
 
-@load "./samples/kick-808.wav" as kickCustom
-@load "./samples/hat-808.wav" as hatCustom
+# Bank picking (make sure you have installed it)
+bank devaloop.808 as my808Bank
 
-bpm tempo
+group myGroup:
+    # Rhythmic (each beat playing a kick)
+    on beat:
+        .my808Bank.kick 1/4
 
-bank default_bank
+    # Synth definition with ADSR
+    let myLead = synth sine {
+        attack: 0,
+        decay: 100,
+        sustain: 100,
+        release: 100
+    }
 
-# Will be executed line by line (sequentially)
+    # Global automation
+    automate myLead:
+        param volume {
+            0% = 0.0
+            100% = 0.5
+        }
+        param pitch {
+            0% = -12.0
+            100% = 12.0
+        }
+
+    # Notes in a loop with condition
+    for i in [1, 2, 3]:
+        if i == 3:
+            myLead -> note(C5, { duration: 200 })
+            print "Playing note C5 for " + i
+
+    # Pause runtime for 500ms
+    sleep 500
+
+    # Note with automation
+    myLead -> note(C4, {
+        duration: 400,
+        velocity: 0.8,
+        automate: {
+            pan: {
+                0%: -1.0,
+                100%: 0.0
+            }
+        }
+    })
+
+    # Notes with params
+    myLead -> note(E4, { duration: 400 })
+    myLead -> note(G4, { duration: 600, glide: true, target_freq: 659.25 })
+    myLead -> note(B3, { duration: 400, slide: true, target_amp: 0.3 })
+
+    # Pattern literal without options
+    pattern kickPattern with my808Bank.kick = "x--- x--- x--- x---"
+
+# Calling the group to play it
 call myGroup
-
-# Will be executed in parallel (concurrently)
-# spawn myGroup
-
-group myLead:
-    let mySynth = synth sine
-    
-    mySynth -> note(C4, { duration: 400 })
-    mySynth -> note(G4, { duration: 400 })
-    mySynth -> note(E4, { duration: 600 })
-    mySynth -> note(A4, { duration: 400 })
-    mySynth -> note(F4, { duration: 800 })
-    mySynth -> note(D4, { duration: 400 })
-    mySynth -> note(B3, { duration: 600 })
-
-call myLead
