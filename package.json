@@ -2,7 +2,7 @@
   "name": "devalang-vscode",
   "displayName": "Devalang VSCode Extension",
   "description": "An extension for Visual Studio Code that provides syntax highlighting, formatting, and language support for Devalang files.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "icon": "media/icon.png",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
   },
   "categories": [
     "Programming Languages",
+    "Education",
     "Other"
   ],
   "activationEvents": [
@@ -39,6 +40,12 @@
         "language": "deva",
         "scopeName": "source.deva",
         "path": "./syntaxes/deva.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "deva",
+        "path": "./snippets/devalang.json"
       }
     ],
     "formatters": [
@@ -77,7 +84,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@devaloop/prettier-plugin-devalang": "^0.0.6",
+    "@devaloop/prettier-plugin-devalang": "^0.0.7",
     "prettier": "^3.6.2"
   }
 }

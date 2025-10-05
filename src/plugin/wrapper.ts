@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import init, { parse as wasmParse } from "../../pkg/devalang_core";
+import init, { parse as wasmParse } from "../../pkg/web/devalang_wasm";
 
 let initialized = false;
 
@@ -10,8 +10,8 @@ async function loadWasm(): Promise<void> {
         return;
     }
 
-    // The Rust build produces `devalang_core_bg.wasm` in the pkg folder.
-    const wasmPath = path.resolve(__dirname, "pkg/devalang_core_bg.wasm");
+    // The Rust build produces `devalang_wasm.wasm` in the pkg folder.
+    const wasmPath = path.resolve(__dirname, "pkg/web/devalang_wasm.wasm");
     const wasmBinary = fs.readFileSync(wasmPath);
     await init(wasmBinary);
 

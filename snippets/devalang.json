@@ -1,0 +1,162 @@
+{
+  "BPM Declaration": {
+    "prefix": "bpm",
+    "body": ["bpm ${1:120}"],
+    "description": "Set the tempo in beats per minute"
+  },
+  "Bank Declaration": {
+    "prefix": "bank",
+    "body": ["bank ${1:devaloop.808} as ${2:drums}"],
+    "description": "Load a bank of sounds with an alias"
+  },
+  "Pattern Declaration": {
+    "prefix": "pattern",
+    "body": [
+      "pattern ${1:name} with ${2:drums.kick} = \"${3:x--- x--- x--- x---}\""
+    ],
+    "description": "Create a rhythmic pattern"
+  },
+  "Let Declaration": {
+    "prefix": "let",
+    "body": ["let ${1:name} = ${2:value}"],
+    "description": "Declare a variable"
+  },
+  "Synth Definition": {
+    "prefix": "synth",
+    "body": [
+      "let ${1:mySynth} = {",
+      "    waveform: \"${2|sine,square,saw,triangle|}\",",
+      "    attack: ${3:0.01},",
+      "    decay: ${4:0.1},",
+      "    sustain: ${5:0.7},",
+      "    release: ${6:0.2}",
+      "}"
+    ],
+    "description": "Define a synthesizer with ADSR envelope"
+  },
+  "Loop Block": {
+    "prefix": "loop",
+    "body": ["loop ${1:4}:", "    ${2:# code here}"],
+    "description": "Create a loop that repeats n times"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": ["for ${1:i} in ${2:range}:", "    ${3:# code here}"],
+    "description": "Create a for loop"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": ["if ${1:condition}:", "    ${2:# code here}"],
+    "description": "Create an if conditional"
+  },
+  "If-Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "if ${1:condition}:",
+      "    ${2:# code if true}",
+      "else:",
+      "    ${3:# code if false}"
+    ],
+    "description": "Create an if-else conditional"
+  },
+  "Group Block": {
+    "prefix": "group",
+    "body": ["group ${1:name}:", "    ${2:# code here}"],
+    "description": "Create a group of statements"
+  },
+  "Function Declaration": {
+    "prefix": "fn",
+    "body": ["fn ${1:name}(${2:params}):", "    ${3:# code here}"],
+    "description": "Define a function"
+  },
+  "Call Statement": {
+    "prefix": "call",
+    "body": ["call ${1:name}"],
+    "description": "Call a group or pattern"
+  },
+  "Spawn Statement": {
+    "prefix": "spawn",
+    "body": ["spawn ${1:name}"],
+    "description": "Spawn a group in parallel"
+  },
+  "Sleep Statement": {
+    "prefix": "sleep",
+    "body": ["sleep ${1:1000}"],
+    "description": "Sleep for n milliseconds"
+  },
+  "Print Statement": {
+    "prefix": "print",
+    "body": ["print \"${1:message}\""],
+    "description": "Print a message to console"
+  },
+  "Arrow Call": {
+    "prefix": "arrow",
+    "body": ["${1:synth} -> ${2:chord}(${3:C4})"],
+    "description": "Call a method on a variable"
+  },
+  "Effect Chain": {
+    "prefix": "chain",
+    "body": [
+      "${1:synth} -> chord(${2:C4})",
+      "    -> velocity(${3:0.8})",
+      "    -> duration(${4:500})",
+      "    -> ${5:reverb}(${6:0.5}, ${7:1.5})"
+    ],
+    "description": "Chain multiple effects"
+  },
+  "Automate Block": {
+    "prefix": "automate",
+    "body": ["automate ${1:target}:", "    ${2:# automation code}"],
+    "description": "Create an automation block"
+  },
+  "Param Block": {
+    "prefix": "param",
+    "body": ["param ${1:name} {", "    ${2:# keyframes}", "}"],
+    "description": "Define a parameter with keyframes"
+  },
+  "On Event": {
+    "prefix": "on",
+    "body": ["on ${1:event}:", "    ${2:# handler code}"],
+    "description": "Register an event handler"
+  },
+  "Emit Event": {
+    "prefix": "emit",
+    "body": ["emit ${1:event}"],
+    "description": "Emit an event"
+  },
+  "Import Statement": {
+    "prefix": "import",
+    "body": ["@import { ${1:name} } from \"${2:path}\""],
+    "description": "Import from another file"
+  },
+  "Export Statement": {
+    "prefix": "export",
+    "body": ["@export { ${1:name} }"],
+    "description": "Export for use in other files"
+  },
+  "Load Sample": {
+    "prefix": "load",
+    "body": ["@load \"${1:path}\" as ${2:alias}"],
+    "description": "Load an audio sample"
+  },
+  "Chord Notation": {
+    "prefix": "chord",
+    "body": ["${1:synth} -> chord(${2:C4}, ${3:E4}, ${4:G4})"],
+    "description": "Play a chord with multiple notes"
+  },
+  "Array Variable": {
+    "prefix": "array",
+    "body": ["let ${1:notes} = [${2:C4}, ${3:E4}, ${4:G4}]"],
+    "description": "Create an array variable"
+  },
+  "Boolean Variable": {
+    "prefix": "bool",
+    "body": ["let ${1:isActive} = ${2|true,false|}"],
+    "description": "Create a boolean variable"
+  },
+  "Comment": {
+    "prefix": "#",
+    "body": ["# ${1:comment}"],
+    "description": "Add a comment"
+  }
+}

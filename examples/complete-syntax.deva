@@ -1,0 +1,303 @@
+# Devalang V0.1.1 - Complete Syntax Example
+# This file showcases all features of Devalang V0.1.1
+
+# ============================================
+# 1. TEMPO & CONFIGURATION
+# ============================================
+
+bpm 140
+
+# ============================================
+# 2. VARIABLE DECLARATIONS
+# ============================================
+
+# Numbers
+let count = 4
+let tempo_value = 140
+let volume = 0.8
+
+# Strings
+let track_name = "Main Theme"
+let instrument = "synth"
+
+# Booleans
+let is_playing = true
+let mute = false
+let active = null
+
+# Arrays
+let notes = [C4, E4, G4, B4]
+let durations = [250, 500, 750, 1000]
+let pitches = [A3, C#4, Eb5, Gb2]
+
+# ============================================
+# 3. SYNTH DEFINITIONS (Objects)
+# ============================================
+
+# Basic synth
+let mySynth = synth sine {
+    attack: 0.01,
+    decay: 0.1,
+    sustain: 0.7,
+    release: 0.2
+}
+
+# Pluck synth
+let pluck = synth triangle {
+    attack: 0.001,
+    decay: 0.3,
+    sustain: 0.1,
+    release: 0.1,
+    type: "pluck"
+}
+
+# Pad synth
+let pad = synth sine {
+    attack: 0.3,
+    decay: 0.2,
+    sustain: 0.8,
+    release: 0.8,
+    type: "pad"
+}
+
+# Bass synth
+let bass = synth square {
+    attack: 0.01,
+    decay: 0.1,
+    sustain: 0.7,
+    release: 0.2
+}
+
+# Lead synth
+let lead = synth saw {
+    attack: 0.005,
+    decay: 0.15,
+    sustain: 0.6,
+    release: 0.25
+}
+
+# ============================================
+# 4. BANKS & PATTERNS
+# ============================================
+
+bank devaloop.808 as drums
+
+# Pattern inline (with)
+pattern kickPattern with drums.kick = "x--- x--- x--- x---"
+pattern snarePattern with drums.snare = "---- x--- ---- x---"
+pattern hihatPattern with drums.hihat = "x-x- x-x- x-x- x-x-"
+
+# ============================================
+# 5. ARROW CALLS & EFFECT CHAINS
+# ============================================
+
+# Simple arrow call
+mySynth -> chord(C4)
+
+# Single effect
+pluck -> chord(E4) -> velocity(0.8)
+
+# Effect chain (multi-line)
+bass -> chord(C2)
+    -> velocity(0.9)
+    -> duration(500)
+    -> drive(0.6)
+    -> lowpass(800, 1.5)
+
+# Complex effect chain
+lead -> chord(A4, C#5, E5)
+    -> velocity(0.85)
+    -> duration(1000)
+    -> delay(0.3, 0.5)
+    -> reverb(0.4, 1.5)
+    -> distortion(0.3)
+    -> chorus(0.5, 0.4)
+
+# ============================================
+# 6. CONTROL FLOW
+# ============================================
+
+# Simple if
+if is_playing:
+    print "Music is playing"
+
+# If-else
+if volume > 0.5:
+    print "Volume is high"
+else:
+    print "Volume is low"
+
+# Complex condition
+if count >= 4 && is_playing == true:
+    mySynth -> chord(C4) -> velocity(0.8)
+else if count < 2 || mute != false:
+    print "Muted or low count"
+else:
+    print "Default case"
+
+# ============================================
+# 7. LOOPS
+# ============================================
+
+# Simple loop
+loop 4:
+    pluck -> chord(C4) -> duration(250)
+    sleep 300
+
+# For loop
+for i in notes:
+    mySynth -> chord(i) -> velocity(0.8)
+    sleep 500
+
+# Nested loops
+loop 2:
+    for note in [C4, E4, G4]:
+        bass -> chord(note) -> duration(300)
+        sleep 350
+
+# ============================================
+# 8. GROUPS & CALLS
+# ============================================
+
+group intro:
+    print "Starting intro"
+    mySynth -> chord(C4) -> velocity(0.6)
+    sleep 1000
+
+group verse:
+    loop 4:
+        pluck -> chord(E4) -> velocity(0.7)
+        sleep 500
+
+call intro
+sleep 500
+call verse
+spawn verse  # Parallel execution
+
+# ============================================
+# 9. FUNCTIONS
+# ============================================
+
+function playChord(chord, vel)
+    mySynth -> chord(chord) -> velocity(vel)
+    sleep 500
+
+function arpeggio(notes)
+    for note in notes
+        pluck -> chord(note) -> velocity(0.8)
+        sleep 200
+
+# ============================================
+# 10. AUTOMATION & PARAMS
+# ============================================
+
+automate mySynth.volume:
+    param volume {
+        0% = 0.0
+        25% = 0.5
+        50% = 1.0
+        75% = 0.5
+        100% = 0.0
+    }
+
+automate lead.cutoff:
+    param frequency {
+        0% = 200
+        50% = 2000
+        100% = 200
+    }
+
+# ============================================
+# 11. EVENTS
+# ============================================
+
+on beat:
+    drums.kick -> velocity(0.9)
+    print "Beat triggered"
+
+on drop:
+    bass -> chord(C1) -> velocity(1.0) -> distortion(0.8)
+
+emit beat
+sleep 500
+emit drop
+
+# ============================================
+# 12. IMPORTS & EXPORTS
+# ============================================
+
+@import { bassline, melody } from "lib/patterns.deva"
+@export { intro, verse }
+@load "samples/kick.wav" as customKick
+
+# ============================================
+# 13. PRINT & DEBUG
+# ============================================
+
+print "Composition started"
+print "BPM: 130"
+print "Playing: " + track_name
+
+# ============================================
+# 14. SLEEP & TIMING
+# ============================================
+
+sleep 1000
+sleep 500
+sleep 250
+
+# ============================================
+# 15. ALL EFFECTS SHOWCASE
+# ============================================
+
+# Velocity & Duration
+mySynth -> chord(C4) -> velocity(0.8) -> duration(500)
+
+# Delay & Reverb
+lead -> chord(E4) -> delay(0.3, 0.5) -> reverb(0.6, 2.0)
+
+# Distortion & Drive
+bass -> chord(C2) -> distortion(0.7) -> drive(0.6)
+
+# Chorus
+pad -> chord(A3, C4, E4) -> chorus(0.5, 0.4)
+
+# Filters
+synth -> chord(G4) -> lowpass(1000, 1.2)
+synth -> chord(A4) -> highpass(500, 0.8)
+synth -> chord(B4) -> bandpass(800, 2.0)
+
+# LFO modulation
+lead -> chord(C5) -> lfo(0.5, 2.0)
+
+# ============================================
+# 16. COMPLEX COMPOSITION
+# ============================================
+
+group mainSection:
+    # Bassline
+    loop 4:
+        bass -> chord(C2) -> velocity(0.9) -> duration(500) -> drive(0.5)
+        sleep 600
+    
+    # Melody
+    for note in [C4, E4, G4, B4]:
+        lead -> chord(note)
+            -> velocity(0.8)
+            -> duration(400)
+            -> delay(0.2, 0.4)
+            -> reverb(0.3, 1.0)
+        sleep 500
+    
+    # Drums
+    loop 8:
+        call kickPattern
+        sleep 250
+        call snarePattern
+        sleep 250
+        call hihatPattern
+        sleep 125
+
+call mainSection
+
+print "Composition complete!"

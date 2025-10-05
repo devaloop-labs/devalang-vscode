@@ -7,12 +7,16 @@
       "match": "#.*$"
     },
     {
-      "name": "keyword.control.devalang",
+      "name": "comment.line.double-slash.devalang",
+      "match": "//.*$"
+    },
+    {
+      "name": "keyword.control.import.devalang",
       "match": "@(use|import|export|load)"
     },
     {
       "name": "keyword.declaration.devalang",
-      "match": "\\b(let|fn)\\b"
+      "match": "\\b(let|const|var|function)\\b"
     },
     {
       "match": "\\bas\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
@@ -26,8 +30,12 @@
       }
     },
     {
+      "name": "keyword.control.flow.devalang",
+      "match": "\\b(if|else|for|loop|spawn)\\b"
+    },
+    {
       "name": "keyword.control.devalang",
-      "match": "\\b(bpm|bank|pattern|loop|group|call|spawn|sleep|synth|automate|print|on|emit)\\b"
+      "match": "\\b(bpm|tempo|bank|pattern|group|call|spawn|sleep|print|on|emit|synth|automate)\\b"
     },
     {
       "name": "entity.name.function.devalang",
@@ -35,11 +43,23 @@
     },
     {
       "name": "constant.language.synthtype.devalang",
-      "match": "\\b(sine|square|saw|triangle|noise)\\b"
+      "match": "\\b(sine|square|saw|triangle)\\b"
+    },
+    {
+      "name": "constant.language.boolean.devalang",
+      "match": "\\b(true|false)\\b"
+    },
+    {
+      "name": "constant.language.null.devalang",
+      "match": "\\bnull\\b"
+    },
+    {
+      "name": "support.function.effect.devalang",
+      "match": "\\b(velocity|duration|chord|note|delay|reverb|distortion|drive|chorus|filter|lowpass|highpass|bandpass|lfo)\\b"
     },
     {
       "name": "variable.parameter.devalang",
-      "match": "\\b(duration|default_bank|params|loopCount|tempo)\\b"
+      "match": "\\b(duration|default_bank|params|loopCount|tempo|waveform|attack|decay|sustain|release|type|with)\\b"
     },
     {
       "name": "variable.other.devalang",
@@ -50,9 +70,23 @@
       "match": "\\b\\d+(\\.\\d+)?\\b"
     },
     {
+      "name": "constant.language.pitch.devalang",
+      "match": "\\b[A-G](#|b)?[0-9]\\b"
+    },
+    {
       "name": "string.quoted.double.devalang",
       "begin": "\"",
-      "end": "\""
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.devalang",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "string.unquoted.pattern.devalang",
+      "match": "=\\s*\"[x\\-\\s]+\""
     },
     {
       "match": "\\b(if|else if|else)\\b",
@@ -66,8 +100,34 @@
       "end": ":",
       "name": "meta.condition.devalang",
       "patterns": [
-        { "match": "[a-zA-Z0-9_><=!\\s]+" }
+        {
+          "name": "keyword.operator.comparison.devalang",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.logical.devalang",
+          "match": "(&&|\\|\\||!)"
+        },
+        {
+          "name": "constant.numeric.devalang",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        },
+        {
+          "name": "constant.language.boolean.devalang",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "variable.other.devalang",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        }
       ]
+    },
+    {
+      "match": "\\b(for)\\b\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+\\bin\\b",
+      "captures": {
+        "1": { "name": "keyword.control.flow.devalang" },
+        "2": { "name": "variable.other.devalang" }
+      }
     },
     {
       "name": "meta.object.devalang",
@@ -76,11 +136,44 @@
       "patterns": [
         {
           "name": "variable.other.object.key.devalang",
-          "match": "[a-zA-Z_][a-zA-Z0-9_]*"
+          "match": "([a-zA-Z_][a-zA-Z0-9_]*)\\s*:"
         },
         {
           "name": "constant.numeric.devalang",
           "match": "\\b\\d+(\\.\\d+)?\\b"
+        },
+        {
+          "name": "constant.language.boolean.devalang",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "string.quoted.double.devalang",
+          "begin": "\"",
+          "end": "\""
+        }
+      ]
+    },
+    {
+      "name": "meta.array.devalang",
+      "begin": "\\[",
+      "end": "\\]",
+      "patterns": [
+        {
+          "name": "constant.language.pitch.devalang",
+          "match": "\\b[A-G](#|b)?[0-9]\\b"
+        },
+        {
+          "name": "constant.numeric.devalang",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        },
+        {
+          "name": "string.quoted.double.devalang",
+          "begin": "\"",
+          "end": "\""
+        },
+        {
+          "name": "punctuation.separator.comma.devalang",
+          "match": ","
         }
       ]
     },
@@ -107,8 +200,38 @@
         {
           "name": "variable.other.devalang",
           "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        },
+        {
+          "name": "punctuation.separator.comma.devalang",
+          "match": ","
         }
       ]
+    },
+    {
+      "name": "meta.pattern.devalang",
+      "match": "\\b(pattern)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+(with)\\s+([a-zA-Z_][a-zA-Z0-9_]*\\.[a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.devalang" },
+        "2": { "name": "entity.name.function.devalang" },
+        "3": { "name": "keyword.other.devalang" },
+        "4": { "name": "variable.other.devalang" }
+      }
+    },
+    {
+      "name": "meta.automate.devalang",
+      "match": "\\b(automate)\\s+([a-zA-Z_][a-zA-Z0-9_\\.]*)",
+      "captures": {
+        "1": { "name": "keyword.control.devalang" },
+        "2": { "name": "variable.other.devalang" }
+      }
+    },
+    {
+      "name": "meta.param.devalang",
+      "match": "\\b(param)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.devalang" },
+        "2": { "name": "variable.parameter.devalang" }
+      }
     }
   ],
   "repository": {

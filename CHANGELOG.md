@@ -6,6 +6,17 @@
 
 Here is the changelog for the Devalang VSCode extension :
 
+## Version 0.0.7 - 2025-10-05
+
+### 🎯 Major Update - Full V0.1.1 Compatibility
+
+Complete rewrite of syntax highlighting and language support to align with Devalang V0.1.1.
+
+#### ✨ New Features
+
+- **💡 Hover Tooltips System** Documented keywords, effects, synth types, and ADSR parameters with rich Markdown tooltips.
+- **Enhanced Syntax Highlighting** for all new keywords and constructs in V0.1.1
+
 ### Version 0.0.1-alpha.8 - 2025-07-13
 
 - Improved syntax highlighting

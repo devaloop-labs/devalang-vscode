@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://firebasestorage.googleapis.com/v0/b/devaloop-labs.firebasestorage.app/o/devalang-teal-logo.png?alt=media&token=55a9b324-01ce-4386-b16d-62d8866b15a8" alt="Devalang Logo">
+    <img src="https://devalang.com/images/devalang-logo-min.png" alt="Devalang Logo" width="100" />
 </div>
 
 ![TypeScript](https://img.shields.io/badge/Built%20with-TypeScript-blue?logo=typescript)
@@ -9,24 +9,22 @@
 
 ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/devaloop.devalang-vscode)
 
-# 🎼 [Devalang](https://github.com/devaloop-labs/devalang) (VSCode Extension)
+# 🦊 VSCode Extension for [Devalang](https://github.com/devaloop-labs/devalang)
 
-🎶 Compose music with code — simple, structured, sonic.
+Devalang is a compact domain-specific language (DSL) for music makers, sound designers, and creative coders.
+Compose loops, control samples, synthesize audio, and render your ideas — all in clean, readable text.
 
-[Devalang](https://github.com/devaloop-labs/devalang) is a tiny domain-specific language (DSL) for music makers, sound designers, and audio hackers.
-Compose loops, control samples, render and play audio — all in clean, readable text.
+Whether you're prototyping a beat, building generative music, or performing live, Devalang gives you rhythmic precision with the elegance of code.
 
-🦊 Whether you're building a track, shaping textures, or performing live, Devalang helps you think in rhythms. It’s designed to be simple, expressive, and fast — because your ideas shouldn’t wait.
-
-From studio sketches to live sets, Devalang gives you rhythmic control — with the elegance of code.
+From studio sketches to live sets, Devalang puts musical ideas into motion.
 
 ## 📚 Quick Access
 
-- [🌐 Devalang CLI](https://github.com/devaloop-labs/devalang)
-- [📖 Documentation](https://github.com/devaloop-labs/devalang/tree/main/docs)
-- [💡 Examples](https://github.com/devaloop-labs/devalang/tree/main/examples)
-- [🎨 Prettier Plugin](https://www.npmjs.com/package/@devaloop/prettier-plugin-devalang)
-- [🌐 Project Website](https://devalang.com)
+- [▶️ Playground](https://playground.devalang.com) — Try Devalang in your browser
+- [📖 Documentation](https://docs.devalang.com) — Complete language reference
+- [🌐 Website](https://devalang.com) — Project homepage
+- [📦 npm Package](https://www.npmjs.com/package/@devaloop/devalang)
+- [📦 Rust Crate](https://crates.io/crates/devalang)
 
 
 ## 🛠️ Overview
@@ -34,11 +32,12 @@ From studio sketches to live sets, Devalang gives you rhythmic control — with 
 🎶 **Devalang** is a domain-specific language tailored for music composition and sound design.  
 This Visual Studio Code extension brings it to life directly in your editor — for a smooth, expressive, and efficient creative workflow.
 
-> 🚀 For full functionality, make sure to install the [Devalang CLI](https://github.com/devaloop-labs/devalang) alongside this extension.
+> 🚀 For full functionality, make sure to install [Devalang](https://github.com/devaloop-labs/devalang) alongside this extension.
 
 ### ✨ What you get:
 
-- 🌈 **Syntax Highlighting** – Read your code at a glance with beautiful, theme-friendly colors.
+- 🌈 **Syntax Highlighting** – Complete color support for all Devalang features
+- 🛠️ **Hover Tooltips** – Get instant documentation when hovering over keywords
 - 🛑 **Real-time Error Checking** – Get instant feedback on mistakes or invalid syntax before you even hit play.
 - 🧹 **Code Formatting** – Keep your `.deva` files clean, structured, and consistent with built-in Prettier support.
 
